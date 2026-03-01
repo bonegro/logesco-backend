@@ -1,0 +1,72 @@
+services:
+
+  database-manager:
+    image: mysql:8.0
+    container_name: mysql_school
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: school_db
+      MYSQL_USER: school_user
+      MYSQL_PASSWORD: school_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mail-service:
+    image: mailhog/mailhog
+    container_name: mailhog
+    restart: always
+    ports:
+      - "1025:1025"   # SMTP
+      - "8025:8025"   # Web UI
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "1025"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  logesco:
+    build: ./
+    container_name: logesco_app
+    restart: always
+
+    depends_on:
+      database-manager:
+        condition: service_healthy
+      mail-service:
+        condition: service_healthy
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://database-manager:3306/school_db?useSSL=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: school_user
+      SPRING_DATASOURCE_PASSWORD: school_pass
+
+      SPRING_MAIL_HOST: mail-service
+      SPRING_MAIL_PORT: 1025
+      SPRING_MAIL_USERNAME:
+      SPRING_MAIL_PASSWORD:
+      SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: "false"
+      SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: "false"
+
+      # Actuator health endpoint
+      MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: health
+
+    ports:
+      - "9091:8080"
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mysql_data:

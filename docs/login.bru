@@ -1,0 +1,23 @@
+meta {
+  name: login
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{protocol}}://{{domain-server}}:{{port}}/auth/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "admin@school.com",
+    "password": "admin"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

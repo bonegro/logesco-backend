@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: initial-schema.sql
+  - include:
+      file: update-eleves-users-classes.sql
+  - include:
+      file: add-column-motif-date-archivage-eleves.sql

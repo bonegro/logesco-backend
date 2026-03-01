@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: logesco
+
+  # ============================
+  # MYSQL CONFIG
+  # ============================
+  datasource:
+    url: jdbc:mysql://database-manager:3306/school_db?useSSL=false&serverTimezone=UTC
+    username: school_user
+    password: school_pass
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  liquibase:
+    enabled: false
+    change-log: classpath:db/changelog/master-changelog.yaml
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+
+  # ============================
+  # MAILHOG SMTP CONFIG
+  # ============================
+  mail:
+    host: mail-service
+    port: 1025
+    username:
+    password:
+    properties:
+      mail:
+        smtp:
+          auth: false
+          starttls:
+            enable: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+logging:
+  level:
+    liquibase: DEBUG
+
+app:
+  base-url: http://localhost:4200
+  default-admin-email: admin@school.com
+  jwt:
+    secret: 1tOo5abm1miyLkOGYzWsBrNTZ1+pvY5AFtLTe9FIflw=
+    expiration: 900000

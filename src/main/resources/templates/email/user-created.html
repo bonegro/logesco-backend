@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Création de votre compte</title>
+</head>
+<body style="margin:0;padding:0;background:#f5f5f5;font-family:Roboto,Arial,sans-serif;">
+<table align="center" width="100%" cellpadding="0" cellspacing="0" style="padding:24px 0;">
+    <tr>
+        <td>
+            <table align="center" width="600" cellpadding="0" cellspacing="0"
+                   style="background:#ffffff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);overflow:hidden;">
+                <tr>
+                    <td style="background:#1976d2;padding:16px 24px;color:#ffffff;">
+                        <h1 style="margin:0;font-size:20px;font-weight:500;">Compte créé</h1>
+                        <p style="margin:4px 0 0;font-size:13px;opacity:0.9;">
+                            Système de gestion scolaire
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:24px;">
+                        <p style="margin:0 0 12px;font-size:14px;color:#333;">Bonjour,</p>
+                        <p style="margin:0 0 16px;font-size:14px;color:#555;">
+                            Votre compte a été créé par l’administrateur. Voici vos identifiants de connexion :
+                        </p>
+
+                        <table cellpadding="0" cellspacing="0" style="margin:0 0 16px;">
+                            <tr>
+                                <td style="padding:4px 0;font-size:14px;color:#777;">Nom d’utilisateur :</td>
+                                <td style="padding:4px 8px;font-size:14px;color:#222;font-weight:500;">${username}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:4px 0;font-size:14px;color:#777;">Mot de passe :</td>
+                                <td style="padding:4px 8px;font-size:14px;color:#222;font-weight:500;">${password}</td>
+                            </tr>
+                        </table>
+
+                        <p style="margin:0 0 20px;font-size:13px;color:#666;">
+                            Nous vous recommandons de changer votre mot de passe dès votre première connexion.
+                        </p>
+
+                        <a href="${appUrl}"
+                           style="display:inline-block;padding:10px 18px;background:#1976d2;color:#ffffff;
+                                      text-decoration:none;border-radius:4px;font-size:13px;font-weight:500;
+                                      text-transform:uppercase;letter-spacing:0.5px;">
+                            Accéder à l’application
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:16px 24px;border-top:1px solid #eee;font-size:11px;color:#999;">
+                        Ceci est un message automatique, merci de ne pas répondre.
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
