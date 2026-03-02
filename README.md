@@ -33,6 +33,10 @@ démarre MailHog
 
 démarre l’application Spring Boot
 
+Vous pouvez vous connecter avec l'admin créé par défaut
+Nom d'utilisateur: admin@school.com
+password: admin
+
 ### 🌐 4. Accès aux services
 🔹 Application Spring Boot
 `http://localhost:9091`
