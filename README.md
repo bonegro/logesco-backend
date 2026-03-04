@@ -54,3 +54,6 @@ user: school_user
 password: school_pass
 
 database: school_db
+
+🔹 Accès à la documentation de l'api (Swagger)
+`http://localhost:9091/swagger-ui/index.html`
